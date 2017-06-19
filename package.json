@@ -1,0 +1,38 @@
+{
+	"name": "umsteigen-jetzt-lib",
+	"description": "Compare cost, environmental and health impact of commuting by car, public transport of bike.",
+	"version": "0.1.0",
+	"main": "index.js",
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"commuting",
+		"public transport",
+		"bike",
+		"co2",
+		"health",
+		"costs"
+	],
+	"author": "Jannis R <mail@jannisr.de>",
+	"contributors": [
+		"Julius Tens <mail@juliuste.de>"
+	],
+	"homepage": "https://github.com/derhuerst/umsteigen-jetzt-lib",
+	"repository": "derhuerst/umsteigen-jetzt-lib",
+	"bugs": "https://github.com/derhuerst/umsteigen-jetzt-lib/issues",
+	"license": "ISC",
+	"engines": {
+		"node": ">=6"
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+		"tape": "^4.6.3",
+		"tap-min": "^1.2.1"
+	},
+	"scripts": {
+		"test": "node test.js | tap-min",
+		"prepublishOnly": "npm test"
+	}
+}
