@@ -1,3 +1,65 @@
 'use strict'
 
-// todo
+const calculateCO2 = require('./lib/co2')
+const calculateCalories = require('./lib/calories')
+const calculatePrice = require('./lib/price')
+const calculateRisk = require('./lib/risk')
+
+const publicTransport = require('./lib/api/public-transport')
+const car = require('./lib/api/car')
+const bike = require('./lib/api/bike')
+
+const isValidLocation = (location) => {
+	return location
+	&& 'object' === typeof location
+	&& 'number' === typeof location.latitude
+	&& 'number' === typeof location.longitude
+}
+
+const isValidTime = (time) => time >= Date.now()
+
+const compute = (journey) => {
+	// if (!Array.isArray(journeys)) throw new Error('journeys must be an array.')
+	// if (!journeys.length === 0) throw new Error('must be one or more journey.')
+	// for (let i = 0; i < journeys.length; i++) {
+	if (!journey) throw new Error(`journey is not an object.`)
+
+	if (!isValidLocation(journey.origin)) {
+		throw new Error(`journey origin is invalid.`)
+	}
+	if (!isValidLocation(journey.destination)) {
+		throw new Error(`journey destination is invalid.`)
+	}
+
+	if (!journey.arrival && !journey.departure) {
+		throw new Error(`journey must have arrival or departure.`)
+	}
+	if (journey.arrival && !isValidTime(journey.arrival)) {
+		throw new Error(`journey arrival is invalid.`)
+	}
+	if (journey.departure && !isValidTime(journey.departure)) {
+		throw new Error(`journey departure is invalid.`)
+	}
+	// }
+
+	const calculate = (d) => ({
+		co2: calculateCO2(data),
+		calories: calculateCalories(data),
+		price: calculatePrice(data),
+		risk: calculateRisk(data)
+	})
+
+	return Promise.all([
+		publicTransport(journey).then(calculate),
+		bike(journey).then(calculate),
+		car(journey).then(calculate)
+	])
+	.then(([publicTransport, bike, car]) => {
+		return {publicTransport, bike, car}
+	})
+
+	// todo: what is this about?
+	// if(['car', 'bike'].indexOf(results[0].legs[0].type)<0) counted.price = 961/48//9.5//18.5
+}
+
+module.exports = compute
