@@ -11,7 +11,7 @@
 ## Installing
 
 ```shell
-npm install derhuerst/umsteigen-jetzt-lib
+npm install umsteigen-jetzt-lib
 ```
 
 

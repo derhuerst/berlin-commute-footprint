@@ -44,7 +44,7 @@ const compute = (journey) => {
 
 	const {origin, destination, departure, arrival} = journey
 
-	const calculate = (d) => ({
+	const calculate = (data) => ({
 		co2: calculateCO2(data),
 		calories: calculateCalories(data),
 		price: calculatePrice(data),
