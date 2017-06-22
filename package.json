@@ -1,5 +1,5 @@
 {
-	"name": "umsteigen-jetzt-lib",
+	"name": "berlin-commute-footprint",
 	"description": "Compare cost, environmental and health impact of commuting by car, public transport of bike.",
 	"version": "0.1.0",
 	"main": "index.js",
@@ -19,9 +19,9 @@
 	"contributors": [
 		"Julius Tens <mail@juliuste.de>"
 	],
-	"homepage": "https://github.com/derhuerst/umsteigen-jetzt-lib",
-	"repository": "derhuerst/umsteigen-jetzt-lib",
-	"bugs": "https://github.com/derhuerst/umsteigen-jetzt-lib/issues",
+	"homepage": "https://github.com/derhuerst/berlin-commute-footprint",
+	"repository": "derhuerst/berlin-commute-footprint",
+	"bugs": "https://github.com/derhuerst/berlin-commute-footprint/issues",
 	"license": "ISC",
 	"engines": {
 		"node": ">=6"
