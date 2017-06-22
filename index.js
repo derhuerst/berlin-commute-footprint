@@ -12,8 +12,9 @@ const bike = require('./lib/api/bike')
 const isValidLocation = (location) => {
 	return location
 	&& 'object' === typeof location
-	&& 'number' === typeof location.latitude
-	&& 'number' === typeof location.longitude
+	&& location.coordinates
+	&& 'number' === typeof location.coordinates.latitude
+	&& 'number' === typeof location.coordinates.longitude
 }
 
 const isValidTime = (time) => time >= Date.now()
@@ -40,7 +41,8 @@ const compute = (journey) => {
 	if (journey.departure && !isValidTime(journey.departure)) {
 		throw new Error(`journey departure is invalid.`)
 	}
-	// }
+
+	const {origin, destination, departure, arrival} = journey
 
 	const calculate = (d) => ({
 		co2: calculateCO2(data),
@@ -50,9 +52,9 @@ const compute = (journey) => {
 	})
 
 	return Promise.all([
-		publicTransport(journey).then(calculate),
-		bike(journey).then(calculate),
-		car(journey).then(calculate)
+		publicTransport(origin, destination, departure, arrival).then(calculate),
+		bike(origin, destination, departure, arrival).then(calculate),
+		car(origin, destination, departure, arrival).then(calculate)
 	])
 	.then(([publicTransport, bike, car]) => {
 		return {publicTransport, bike, car}
