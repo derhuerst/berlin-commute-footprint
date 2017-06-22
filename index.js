@@ -59,9 +59,6 @@ const compute = (journey) => {
 	.then(([publicTransport, bike, car]) => {
 		return {publicTransport, bike, car}
 	})
-
-	// todo: what is this about?
-	// if(['car', 'bike'].indexOf(results[0].legs[0].type)<0) counted.price = 961/48//9.5//18.5
 }
 
 module.exports = compute
