@@ -27,7 +27,7 @@
 		"node": ">=6"
 	},
 	"dependencies": {
-		"fetch-ponyfill": "^4.0.0",
+		"fetch-ponyfill": "^6.1.0",
 		"lodash.minby": "^4.6.0",
 		"pinkie-promise": "^2.0.1",
 		"vbb-client": "^2.0.1"
